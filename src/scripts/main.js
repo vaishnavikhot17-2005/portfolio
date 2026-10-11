@@ -38,21 +38,21 @@ document.addEventListener('pointermove', (event) => {
   pointerY = event.clientY;
 
   const currentTime = performance.now();
-  const emissionInterval = reducedMotion ? 100 : 24;
+  const emissionInterval = reducedMotion ? 150 : 85;
   if (currentTime - lastSmokeTime < emissionInterval) return;
   lastSmokeTime = currentTime;
 
-  const burstCount = reducedMotion ? 1 : 4 + Math.floor(Math.random() * 3);
+  const burstCount = reducedMotion ? 1 : 1;
 
   for (let i = 0; i < burstCount; i += 1) {
     const smokeParticle = document.createElement('span');
     smokeParticle.className = 'smoke-particle';
-    smokeParticle.style.left = `${pointerX + (Math.random() * 16 - 8)}px`;
-    smokeParticle.style.top = `${pointerY + (Math.random() * 16 - 8)}px`;
-    smokeParticle.style.setProperty('--smoke-size', `${30 + Math.random() * 50}px`);
-    smokeParticle.style.setProperty('--smoke-drift-x', `${-80 + Math.random() * 160}px`);
-    smokeParticle.style.setProperty('--smoke-drift-y', `${-100 - Math.random() * 110}px`);
-    smokeParticle.style.setProperty('--smoke-duration', `${reducedMotion ? 500 : 900 + Math.random() * 1000}ms`);
+    smokeParticle.style.left = `${pointerX + (Math.random() * 12 - 6)}px`;
+    smokeParticle.style.top = `${pointerY + (Math.random() * 12 - 6)}px`;
+    smokeParticle.style.setProperty('--smoke-size', `${14 + Math.random() * 16}px`);
+    smokeParticle.style.setProperty('--smoke-drift-x', `${-24 + Math.random() * 48}px`);
+    smokeParticle.style.setProperty('--smoke-drift-y', `${-28 - Math.random() * 30}px`);
+    smokeParticle.style.setProperty('--smoke-duration', `${reducedMotion ? 600 : 900 + Math.random() * 400}ms`);
     smokeLayer.append(smokeParticle);
     smokeParticle.addEventListener('animationend', () => smokeParticle.remove(), { once: true });
   }
